@@ -1,0 +1,187 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+
+    <parent>
+        <groupId>org.restcomm</groupId>
+        <artifactId>restcomm-parent</artifactId>
+        <version>4.1.0-14</version>
+    </parent>
+
+    <groupId>org.restcomm.media</groupId>
+    <artifactId>media-core</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <name>RestComm Media Core</name>
+    <url>https://github.com/RestComm/media-core</url>
+    <organization>
+        <name>TeleStax, Inc.</name>
+        <url>http://www.telestax.com</url>
+    </organization>
+    <issueManagement>
+        <url>https://github.com/RestComm/media-core/issues</url>
+    </issueManagement>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <version.junit>4.12</version.junit>
+        <log4j.version>2.10.0</log4j.version>
+        <version.guava>19.0</version.guava>
+        <version.apache.commons.codec>1.10</version.apache.commons.codec>
+        <fsm.squirrel.version>0.3.9.11</fsm.squirrel.version>
+    </properties>
+
+    <modules>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Google Guava -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${version.guava}</version>
+            </dependency>
+
+            <!-- Dependency Injection -->
+            <dependency>
+                <groupId>com.google.inject</groupId>
+                <artifactId>guice</artifactId>
+                <version>4.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.inject.extensions</groupId>
+                <artifactId>guice-grapher</artifactId>
+                <version>4.1.0</version>
+            </dependency>
+        
+            <!-- FSM -->
+            <dependency>
+                <groupId>org.restcomm.fsm</groupId>
+                <artifactId>squirrel-foundation</artifactId>
+                <version>${fsm.squirrel.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>log4j</groupId>
+                        <artifactId>log4j</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+        
+            <!-- jUnit -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${version.junit}</version>
+            </dependency>
+            
+            <!-- Mockito -->
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-all</artifactId>
+                <version>1.10.19</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.powermock</groupId>
+                <artifactId>powermock-module-junit4</artifactId>
+                <version>1.6.6</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.powermock</groupId>
+                <artifactId>powermock-api-mockito</artifactId>
+                <version>1.6.6</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!-- Log4j -->
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-1.2-api</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>1.7.7</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.7.7</version>
+            </dependency>
+            
+            <!-- BASE64 Encoding -->
+            <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>${version.apache.commons.codec}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <profiles>
+        <!-- TODO Release profile -->
+        <!-- TODO Sign artifacts -->
+    </profiles>
+
+    <scm>
+        <connection>scm:git:git@github.com:RestComm/mediaserver.git</connection>
+        <developerConnection>scm:git:git@github.com:RestComm/mediaserver.git</developerConnection>
+        <url>scm:git:git@github.com:RestComm/mediaserver.git/</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+    <!-- Dupe info from parent, but it's only way to retrieve the parent without user configuration -->
+    <repositories>
+        <repository>
+            <id>mobicents-public-repository-group</id>
+            <name>Mobicens Public Maven Repository Group</name>
+            <url>https://oss.sonatype.org/content/groups/public</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+</project>

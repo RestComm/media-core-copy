@@ -1,3 +1,35 @@
+# Ignore IDE files
+/.project
+/**/.classpath
+
+# Ignore IntelliJ IDEA files
+/**/*.iml
+.idea
+
+# ignore OS junk files
+.DS_Store
+
+# ignore Maven generated target folders
+~
+target
+bin
+classes
+*.zip
+
+# Ignore Maven target/ dirs
+/**/target/**/*
+
+#Ignore Maven generated artifacts
+/**/.classpath
+/**/.project
+/**/.settings
+
+# ignore diagram images
+*.png
+
+# temp files
+*~
+
 # Compiled class file
 *.class
 
@@ -20,3 +52,6 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# ignore .svn metadata files
+.svn
